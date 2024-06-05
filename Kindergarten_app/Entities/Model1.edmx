@@ -12,6 +12,13 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="Genders">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="Kid">
           <Key>
             <PropertyRef Name="Id" />
@@ -26,6 +33,7 @@
           <Property Name="MedicalDescription" Type="nvarchar(max)" />
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="IsValid" Type="bit" Nullable="false" />
+          <Property Name="Gender" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="KidGroups">
           <Key>
@@ -47,6 +55,7 @@
           <Property Name="DateOfBirth" Type="nvarchar" MaxLength="2" Nullable="false" />
           <Property Name="PassportNumber" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="IsValid" Type="bit" Nullable="false" />
+          <Property Name="Gender" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="PrivateLessons">
           <Key>
@@ -93,7 +102,20 @@
           <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="IsValid" Type="bit" Nullable="false" />
+          <Property Name="Gender" Type="int" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Kid_Genders">
+          <End Role="Genders" Type="Self.Genders" Multiplicity="1" />
+          <End Role="Kid" Type="Self.Kid" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genders">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Kid">
+              <PropertyRef Name="Gender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Kid_KidGroups">
           <End Role="KidGroups" Type="Self.KidGroups" Multiplicity="1" />
           <End Role="Kid" Type="Self.Kid" Multiplicity="*" />
@@ -115,6 +137,18 @@
             </Principal>
             <Dependent Role="Kid">
               <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Parent_Genders">
+          <End Role="Genders" Type="Self.Genders" Multiplicity="1" />
+          <End Role="Parent" Type="Self.Parent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genders">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Parent">
+              <PropertyRef Name="Gender" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -154,6 +188,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Workers_Genders">
+          <End Role="Genders" Type="Self.Genders" Multiplicity="1" />
+          <End Role="Workers" Type="Self.Workers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genders">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Workers">
+              <PropertyRef Name="Gender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Workers_Roles">
           <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
           <End Role="Workers" Type="Self.Workers" Multiplicity="*" />
@@ -168,6 +214,7 @@
         </Association>
         <EntityContainer Name="Хранилище Kindergarten_dbModelContainer">
           <EntitySet Name="EducationTypes" EntityType="Self.EducationTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Genders" EntityType="Self.Genders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Kid" EntityType="Self.Kid" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KidGroups" EntityType="Self.KidGroups" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Parent" EntityType="Self.Parent" Schema="dbo" store:Type="Tables" />
@@ -175,6 +222,10 @@
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Workers" EntityType="Self.Workers" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Kid_Genders" Association="Self.FK_Kid_Genders">
+            <End Role="Genders" EntitySet="Genders" />
+            <End Role="Kid" EntitySet="Kid" />
+          </AssociationSet>
           <AssociationSet Name="FK_Kid_KidGroups" Association="Self.FK_Kid_KidGroups">
             <End Role="KidGroups" EntitySet="KidGroups" />
             <End Role="Kid" EntitySet="Kid" />
@@ -182,6 +233,10 @@
           <AssociationSet Name="FK_Kid_Parent" Association="Self.FK_Kid_Parent">
             <End Role="Parent" EntitySet="Parent" />
             <End Role="Kid" EntitySet="Kid" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Parent_Genders" Association="Self.FK_Parent_Genders">
+            <End Role="Genders" EntitySet="Genders" />
+            <End Role="Parent" EntitySet="Parent" />
           </AssociationSet>
           <AssociationSet Name="FK_PrivateLessons_EducationTypes" Association="Self.FK_PrivateLessons_EducationTypes">
             <End Role="EducationTypes" EntitySet="EducationTypes" />
@@ -195,6 +250,10 @@
             <End Role="Workers" EntitySet="Workers" />
             <End Role="PrivateLessons" EntitySet="PrivateLessons" />
           </AssociationSet>
+          <AssociationSet Name="FK_Workers_Genders" Association="Self.FK_Workers_Genders">
+            <End Role="Genders" EntitySet="Genders" />
+            <End Role="Workers" EntitySet="Workers" />
+          </AssociationSet>
           <AssociationSet Name="FK_Workers_Roles" Association="Self.FK_Workers_Roles">
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Workers" EntitySet="Workers" />
@@ -206,6 +265,7 @@
       <Schema Namespace="Kindergarten_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="Kindergarten_dbEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="EducationTypes" EntityType="Kindergarten_dbModel.EducationTypes" />
+          <EntitySet Name="Genders" EntityType="Kindergarten_dbModel.Genders" />
           <EntitySet Name="Kid" EntityType="Kindergarten_dbModel.Kid" />
           <EntitySet Name="KidGroups" EntityType="Kindergarten_dbModel.KidGroups" />
           <EntitySet Name="Parent" EntityType="Kindergarten_dbModel.Parent" />
@@ -216,6 +276,18 @@
           <AssociationSet Name="FK_PrivateLessons_EducationTypes" Association="Kindergarten_dbModel.FK_PrivateLessons_EducationTypes">
             <End Role="EducationTypes" EntitySet="EducationTypes" />
             <End Role="PrivateLessons" EntitySet="PrivateLessons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kid_Genders" Association="Kindergarten_dbModel.FK_Kid_Genders">
+            <End Role="Genders" EntitySet="Genders" />
+            <End Role="Kid" EntitySet="Kid" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Parent_Genders" Association="Kindergarten_dbModel.FK_Parent_Genders">
+            <End Role="Genders" EntitySet="Genders" />
+            <End Role="Parent" EntitySet="Parent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Workers_Genders" Association="Kindergarten_dbModel.FK_Workers_Genders">
+            <End Role="Genders" EntitySet="Genders" />
+            <End Role="Workers" EntitySet="Workers" />
           </AssociationSet>
           <AssociationSet Name="FK_Kid_KidGroups" Association="Kindergarten_dbModel.FK_Kid_KidGroups">
             <End Role="KidGroups" EntitySet="KidGroups" />
@@ -246,6 +318,16 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="PrivateLessons" Relationship="Kindergarten_dbModel.FK_PrivateLessons_EducationTypes" FromRole="EducationTypes" ToRole="PrivateLessons" />
         </EntityType>
+        <EntityType Name="Genders">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Kid" Relationship="Kindergarten_dbModel.FK_Kid_Genders" FromRole="Genders" ToRole="Kid" />
+          <NavigationProperty Name="Parent" Relationship="Kindergarten_dbModel.FK_Parent_Genders" FromRole="Genders" ToRole="Parent" />
+          <NavigationProperty Name="Workers" Relationship="Kindergarten_dbModel.FK_Workers_Genders" FromRole="Genders" ToRole="Workers" />
+        </EntityType>
         <EntityType Name="Kid">
           <Key>
             <PropertyRef Name="Id" />
@@ -260,6 +342,8 @@
           <Property Name="MedicalDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IsValid" Type="Boolean" Nullable="false" />
+          <Property Name="Gender" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Genders" Relationship="Kindergarten_dbModel.FK_Kid_Genders" FromRole="Kid" ToRole="Genders" />
           <NavigationProperty Name="KidGroups" Relationship="Kindergarten_dbModel.FK_Kid_KidGroups" FromRole="Kid" ToRole="KidGroups" />
           <NavigationProperty Name="Parent" Relationship="Kindergarten_dbModel.FK_Kid_Parent" FromRole="Kid" ToRole="Parent" />
           <NavigationProperty Name="PrivateLessons" Relationship="Kindergarten_dbModel.FK_PrivateLessons_Kid" FromRole="Kid" ToRole="PrivateLessons" />
@@ -285,6 +369,8 @@
           <Property Name="DateOfBirth" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="true" />
           <Property Name="PassportNumber" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="IsValid" Type="Boolean" Nullable="false" />
+          <Property Name="Gender" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Genders" Relationship="Kindergarten_dbModel.FK_Parent_Genders" FromRole="Parent" ToRole="Genders" />
           <NavigationProperty Name="Kid" Relationship="Kindergarten_dbModel.FK_Kid_Parent" FromRole="Parent" ToRole="Kid" />
         </EntityType>
         <EntityType Name="PrivateLessons">
@@ -336,6 +422,8 @@
           <Property Name="Login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="IsValid" Type="Boolean" Nullable="false" />
+          <Property Name="Gender" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Genders" Relationship="Kindergarten_dbModel.FK_Workers_Genders" FromRole="Workers" ToRole="Genders" />
           <NavigationProperty Name="PrivateLessons" Relationship="Kindergarten_dbModel.FK_PrivateLessons_Workers" FromRole="Workers" ToRole="PrivateLessons" />
           <NavigationProperty Name="Roles" Relationship="Kindergarten_dbModel.FK_Workers_Roles" FromRole="Workers" ToRole="Roles" />
         </EntityType>
@@ -348,6 +436,42 @@
             </Principal>
             <Dependent Role="PrivateLessons">
               <PropertyRef Name="EducationTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kid_Genders">
+          <End Type="Kindergarten_dbModel.Genders" Role="Genders" Multiplicity="1" />
+          <End Type="Kindergarten_dbModel.Kid" Role="Kid" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genders">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Kid">
+              <PropertyRef Name="Gender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Parent_Genders">
+          <End Type="Kindergarten_dbModel.Genders" Role="Genders" Multiplicity="1" />
+          <End Type="Kindergarten_dbModel.Parent" Role="Parent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genders">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Parent">
+              <PropertyRef Name="Gender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Workers_Genders">
+          <End Type="Kindergarten_dbModel.Genders" Role="Genders" Multiplicity="1" />
+          <End Type="Kindergarten_dbModel.Workers" Role="Workers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genders">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Workers">
+              <PropertyRef Name="Gender" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -425,9 +549,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Genders">
+            <EntityTypeMapping TypeName="Kindergarten_dbModel.Genders">
+              <MappingFragment StoreEntitySet="Genders">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Kid">
             <EntityTypeMapping TypeName="Kindergarten_dbModel.Kid">
               <MappingFragment StoreEntitySet="Kid">
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
                 <ScalarProperty Name="IsValid" ColumnName="IsValid" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="MedicalDescription" ColumnName="MedicalDescription" />
@@ -452,6 +585,7 @@
           <EntitySetMapping Name="Parent">
             <EntityTypeMapping TypeName="Kindergarten_dbModel.Parent">
               <MappingFragment StoreEntitySet="Parent">
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
                 <ScalarProperty Name="IsValid" ColumnName="IsValid" />
                 <ScalarProperty Name="PassportNumber" ColumnName="PassportNumber" />
                 <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
@@ -499,6 +633,7 @@
           <EntitySetMapping Name="Workers">
             <EntityTypeMapping TypeName="Kindergarten_dbModel.Workers">
               <MappingFragment StoreEntitySet="Workers">
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
                 <ScalarProperty Name="IsValid" ColumnName="IsValid" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Login" ColumnName="Login" />

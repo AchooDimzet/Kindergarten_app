@@ -26,6 +26,7 @@ namespace Kindergarten_app.Entities
         }
     
         public DbSet<EducationTypes> EducationTypes { get; set; }
+        public DbSet<Genders> Genders { get; set; }
         public DbSet<Kid> Kid { get; set; }
         public DbSet<KidGroups> KidGroups { get; set; }
         public DbSet<Parent> Parent { get; set; }

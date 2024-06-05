@@ -29,7 +29,9 @@ namespace Kindergarten_app.Entities
         public string MedicalDescription { get; set; }
         public string Description { get; set; }
         public bool IsValid { get; set; }
+        public int Gender { get; set; }
     
+        public virtual Genders Genders { get; set; }
         public virtual KidGroups KidGroups { get; set; }
         public virtual Parent Parent { get; set; }
         public virtual ICollection<PrivateLessons> PrivateLessons { get; set; }

@@ -31,7 +31,9 @@ namespace Kindergarten_app.Entities
         public string Login { get; set; }
         public string Password { get; set; }
         public bool IsValid { get; set; }
+        public int Gender { get; set; }
     
+        public virtual Genders Genders { get; set; }
         public virtual ICollection<PrivateLessons> PrivateLessons { get; set; }
         public virtual Roles Roles { get; set; }
     }

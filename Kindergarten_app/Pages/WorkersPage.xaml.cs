@@ -1,5 +1,5 @@
-﻿using Kindergarten_app.Entities;
-using Kindergarten_app.Classes;
+﻿using Kindergarten_app.Classes;
+using Kindergarten_app.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,20 +18,19 @@ using System.Windows.Shapes;
 namespace Kindergarten_app.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для KidsPage.xaml
+    /// Логика взаимодействия для WorkersPage.xaml
     /// </summary>
-    public partial class KidsPage : Page
+    public partial class WorkersPage : Page
     {
-        public KidsPage()
+        public WorkersPage()
         {
             InitializeComponent();
             UpdateDgSource();
         }
-
         private void UpdateDgSource()
         {
-            var Kids = AppData.Context.Kid.Where(p => p.IsValid == true).ToList();
-            DgKids.ItemsSource = Kids;
+            var workers = AppData.Context.Workers.Where(p => p.IsValid == true).ToList();
+            DgWorkers.ItemsSource = workers;
         }
 
         private void BtnModify_Click(object sender, RoutedEventArgs e)
@@ -45,8 +44,8 @@ namespace Kindergarten_app.Pages
             {
                 try
                 {
-                    var kid = DgKids.SelectedItem as Kid;
-                    kid.IsValid = false;
+                    var workers = DgWorkers.SelectedItem as Workers;
+                    workers.IsValid = false;
                     AppData.Context.SaveChanges();
                     UpdateDgSource();
                 }
@@ -63,11 +62,12 @@ namespace Kindergarten_app.Pages
                 UpdateDgSource();
             else
             {
-                DgKids.ItemsSource = AppData.Context.Kid.Where(p => (p.Last_name.Contains(TbSerch.Text.ToLower().Trim()) && p.IsValid == true) || (p.First_name.Contains(TbSerch.Text.ToLower().Trim()) && p.IsValid == true) || (p.Patronimyc.Contains(TbSerch.Text.ToLower().Trim()) && p.IsValid == true)).ToList();
+                DgWorkers.ItemsSource = AppData.Context.Workers.Where(p => (p.First_name.Contains(TbSerch.Text.ToLower().Trim())
+                    || p.Last_name.Contains(TbSerch.Text.ToLower().Trim()) || p.Patronimyc.Contains(TbSerch.Text.ToLower().Trim())) && p.IsValid == true).ToList();
             }
         }
 
-        private void BtnAddKid_Click(object sender, RoutedEventArgs e)
+        private void BtnAddClient_Click(object sender, RoutedEventArgs e)
         {
 
         }

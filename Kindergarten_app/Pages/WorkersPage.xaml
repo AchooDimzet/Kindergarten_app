@@ -1,0 +1,64 @@
+﻿<Page x:Class="Kindergarten_app.Pages.WorkersPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Kindergarten_app.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="WorkersPage">
+
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Border Margin="10" Grid.Row="0">
+                <DataGrid Name="DgWorkers" Margin="10" AutoGenerateColumns="False" CanUserAddRows="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Полное имя" Binding="{Binding FullName}"/>
+                        <DataGridTextColumn Header="Дата рождения" Binding="{Binding DateOfBirth}"/>
+                        <DataGridTextColumn Header="Должность" Binding="{Binding Roles.Name}"/>
+                        <DataGridTextColumn Header="Логин" Binding="{Binding Login}"/>
+                        <DataGridTemplateColumn Header="Фото">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Image Width="50" Height="50" Stretch="Fill">
+                                        <Image.Source>
+                                            <Binding Path="Photo">
+                                                <Binding.TargetNullValue>
+                                                    <BitmapImage UriSource="../Resources/person.png" />
+                                                </Binding.TargetNullValue>
+                                            </Binding>
+                                        </Image.Source>
+                                    </Image>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Name="BtnModify" Click="BtnModify_Click" Content="Редактировать" Padding="10 5"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Name="Delete" Click="Delete_Click" Content="Удалить" Padding="10 5"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Border>
+
+            <DockPanel Grid.Row="1" Margin="10 5">
+                <TextBlock Text="Поиск: " Margin="5"  FontSize="16" FontWeight="Bold"/>
+                <TextBox FontSize="16" MinWidth="200" Margin="10 0" DockPanel.Dock="Left" Name="TbSerch" TextChanged="TbSerch_TextChanged"/>
+                <Button Content="Добавить" Name="BtnAddClient" Click="BtnAddClient_Click" DockPanel.Dock="Left" FontSize="16" FontWeight="Bold" Padding="10 5"/>
+            </DockPanel>
+        </Grid>
+    </Grid>
+</Page>

@@ -12,25 +12,20 @@ namespace Kindergarten_app.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class Parent
+    public partial class Genders
     {
-        public Parent()
+        public Genders()
         {
             this.Kid = new HashSet<Kid>();
+            this.Parent = new HashSet<Parent>();
+            this.Workers = new HashSet<Workers>();
         }
     
         public int Id { get; set; }
-        public string First_name { get; set; }
-        public string Last_name { get; set; }
-        public string Patronimyc { get; set; }
-        public string Phone { get; set; }
-        public string Adress { get; set; }
-        public string DateOfBirth { get; set; }
-        public string PassportNumber { get; set; }
-        public bool IsValid { get; set; }
-        public int Gender { get; set; }
+        public string Name { get; set; }
     
-        public virtual Genders Genders { get; set; }
         public virtual ICollection<Kid> Kid { get; set; }
+        public virtual ICollection<Parent> Parent { get; set; }
+        public virtual ICollection<Workers> Workers { get; set; }
     }
 }

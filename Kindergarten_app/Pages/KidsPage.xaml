@@ -9,6 +9,54 @@
       Title="KidsPage">
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Border Margin="10" Grid.Row="0">
+            <DataGrid Name="DgKids" Margin="10" AutoGenerateColumns="False" CanUserAddRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ФИО" Binding="{Binding FullName}"/>
+                    <DataGridTextColumn Header="Пол" Binding="{Binding Gender}" />
+                    <DataGridTextColumn Header="Номер группы" Binding="{Binding Group.Name}" />
+                    <DataGridTextColumn Header="Родитель" Binding="{Binding Parent.FullName}"/>
+                    <DataGridTemplateColumn Header="Фото">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Width="50" Height="50" Stretch="Fill">
+                                    <Image.Source>
+                                        <Binding Path="Photo">
+                                            <Binding.TargetNullValue>
+                                                <BitmapImage UriSource="../Resources/person.png" />
+                                            </Binding.TargetNullValue>
+                                        </Binding>
+                                    </Image.Source>
+                                </Image>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Name="BtnModify" Click="BtnModify_Click" Content="Редактировать" Padding="10 5"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Name="Delete" Click="Delete_Click" Content="Удалить" Padding="10 5"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+
+        <DockPanel Grid.Row="1" Margin="10 5">
+            <TextBlock Text="Поиск: " Margin="5"  FontSize="16" FontWeight="Bold"/>
+            <TextBox FontSize="16" MinWidth="200" Margin="10 0" DockPanel.Dock="Left" Name="TbSerch" TextChanged="TbSerch_TextChanged"/>
+            <Button Content="Добавить" Name="BtnAddKid" Click="BtnAddKid_Click" DockPanel.Dock="Left" FontSize="16" Margin="5 0"  FontWeight="Bold" Padding="10 5"/>
+        </DockPanel>
     </Grid>
 </Page>
