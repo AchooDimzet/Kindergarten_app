@@ -1,5 +1,6 @@
 ﻿using Kindergarten_app.Classes;
 using Kindergarten_app.Entities;
+using Kindergarten_app.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,7 +36,9 @@ namespace Kindergarten_app.Pages
 
         private void BtnModify_Click(object sender, RoutedEventArgs e)
         {
-
+            AddWorkerWindow addWorker = new AddWorkerWindow(DgWorkers.SelectedItem as Workers);
+            addWorker.ShowDialog();
+            UpdateDgSource();
         }
 
         private void Delete_Click(object sender, RoutedEventArgs e)
@@ -69,7 +72,9 @@ namespace Kindergarten_app.Pages
 
         private void BtnAddClient_Click(object sender, RoutedEventArgs e)
         {
-
+            AddWorkerWindow addWorker = new AddWorkerWindow();
+            addWorker.ShowDialog();
+            UpdateDgSource();
         }
     }
 }

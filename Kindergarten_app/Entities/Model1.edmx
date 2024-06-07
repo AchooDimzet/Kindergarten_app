@@ -27,13 +27,14 @@
           <Property Name="First_name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Last_name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Patronimyc" Type="nvarchar" MaxLength="50" />
-          <Property Name="DateOfBirth" Type="nvarchar" MaxLength="2" Nullable="false" />
+          <Property Name="DateOfBirth" Type="date" Nullable="false" />
           <Property Name="ParentId" Type="int" Nullable="false" />
           <Property Name="GroupId" Type="int" Nullable="false" />
           <Property Name="MedicalDescription" Type="nvarchar(max)" />
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="IsValid" Type="bit" Nullable="false" />
           <Property Name="Gender" Type="int" Nullable="false" />
+          <Property Name="Photo" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="KidGroups">
           <Key>
@@ -52,10 +53,11 @@
           <Property Name="Patronimyc" Type="nvarchar" MaxLength="50" />
           <Property Name="Phone" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="Adress" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="DateOfBirth" Type="nvarchar" MaxLength="2" Nullable="false" />
+          <Property Name="DateOfBirth" Type="date" Nullable="false" />
           <Property Name="PassportNumber" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="IsValid" Type="bit" Nullable="false" />
           <Property Name="Gender" Type="int" Nullable="false" />
+          <Property Name="Photo" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="PrivateLessons">
           <Key>
@@ -68,6 +70,7 @@
           <Property Name="WorkerId" Type="int" Nullable="false" />
           <Property Name="Price" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="IsValid" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Roles">
           <Key>
@@ -96,13 +99,14 @@
           <Property Name="Patronimyc" Type="nvarchar" MaxLength="50" />
           <Property Name="Phone" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="Adress" Type="nvarchar" MaxLength="100" />
-          <Property Name="DateOfBirth" Type="nvarchar" MaxLength="2" Nullable="false" />
+          <Property Name="DateOfBirth" Type="date" Nullable="false" />
           <Property Name="PassportNumber" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="RoleId" Type="int" Nullable="false" />
           <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="IsValid" Type="bit" Nullable="false" />
           <Property Name="Gender" Type="int" Nullable="false" />
+          <Property Name="Photo" Type="varbinary(max)" />
         </EntityType>
         <Association Name="FK_Kid_Genders">
           <End Role="Genders" Type="Self.Genders" Multiplicity="1" />
@@ -336,13 +340,14 @@
           <Property Name="First_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Last_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Patronimyc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="DateOfBirth" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="ParentId" Type="Int32" Nullable="false" />
           <Property Name="GroupId" Type="Int32" Nullable="false" />
           <Property Name="MedicalDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IsValid" Type="Boolean" Nullable="false" />
           <Property Name="Gender" Type="Int32" Nullable="false" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Genders" Relationship="Kindergarten_dbModel.FK_Kid_Genders" FromRole="Kid" ToRole="Genders" />
           <NavigationProperty Name="KidGroups" Relationship="Kindergarten_dbModel.FK_Kid_KidGroups" FromRole="Kid" ToRole="KidGroups" />
           <NavigationProperty Name="Parent" Relationship="Kindergarten_dbModel.FK_Kid_Parent" FromRole="Kid" ToRole="Parent" />
@@ -366,10 +371,11 @@
           <Property Name="Patronimyc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Phone" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="Adress" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="DateOfBirth" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="PassportNumber" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="IsValid" Type="Boolean" Nullable="false" />
           <Property Name="Gender" Type="Int32" Nullable="false" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Genders" Relationship="Kindergarten_dbModel.FK_Parent_Genders" FromRole="Parent" ToRole="Genders" />
           <NavigationProperty Name="Kid" Relationship="Kindergarten_dbModel.FK_Kid_Parent" FromRole="Parent" ToRole="Kid" />
         </EntityType>
@@ -384,6 +390,7 @@
           <Property Name="WorkerId" Type="Int32" Nullable="false" />
           <Property Name="Price" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsValid" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="EducationTypes" Relationship="Kindergarten_dbModel.FK_PrivateLessons_EducationTypes" FromRole="PrivateLessons" ToRole="EducationTypes" />
           <NavigationProperty Name="Kid" Relationship="Kindergarten_dbModel.FK_PrivateLessons_Kid" FromRole="PrivateLessons" ToRole="Kid" />
           <NavigationProperty Name="Workers" Relationship="Kindergarten_dbModel.FK_PrivateLessons_Workers" FromRole="PrivateLessons" ToRole="Workers" />
@@ -416,13 +423,14 @@
           <Property Name="Patronimyc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Phone" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="Adress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="DateOfBirth" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="PassportNumber" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="RoleId" Type="Int32" Nullable="false" />
           <Property Name="Login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="IsValid" Type="Boolean" Nullable="false" />
           <Property Name="Gender" Type="Int32" Nullable="false" />
+          <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Genders" Relationship="Kindergarten_dbModel.FK_Workers_Genders" FromRole="Workers" ToRole="Genders" />
           <NavigationProperty Name="PrivateLessons" Relationship="Kindergarten_dbModel.FK_PrivateLessons_Workers" FromRole="Workers" ToRole="PrivateLessons" />
           <NavigationProperty Name="Roles" Relationship="Kindergarten_dbModel.FK_Workers_Roles" FromRole="Workers" ToRole="Roles" />
@@ -560,6 +568,7 @@
           <EntitySetMapping Name="Kid">
             <EntityTypeMapping TypeName="Kindergarten_dbModel.Kid">
               <MappingFragment StoreEntitySet="Kid">
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
                 <ScalarProperty Name="Gender" ColumnName="Gender" />
                 <ScalarProperty Name="IsValid" ColumnName="IsValid" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -585,6 +594,7 @@
           <EntitySetMapping Name="Parent">
             <EntityTypeMapping TypeName="Kindergarten_dbModel.Parent">
               <MappingFragment StoreEntitySet="Parent">
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
                 <ScalarProperty Name="Gender" ColumnName="Gender" />
                 <ScalarProperty Name="IsValid" ColumnName="IsValid" />
                 <ScalarProperty Name="PassportNumber" ColumnName="PassportNumber" />
@@ -601,6 +611,7 @@
           <EntitySetMapping Name="PrivateLessons">
             <EntityTypeMapping TypeName="Kindergarten_dbModel.PrivateLessons">
               <MappingFragment StoreEntitySet="PrivateLessons">
+                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="WorkerId" ColumnName="WorkerId" />
@@ -633,6 +644,7 @@
           <EntitySetMapping Name="Workers">
             <EntityTypeMapping TypeName="Kindergarten_dbModel.Workers">
               <MappingFragment StoreEntitySet="Workers">
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
                 <ScalarProperty Name="Gender" ColumnName="Gender" />
                 <ScalarProperty Name="IsValid" ColumnName="IsValid" />
                 <ScalarProperty Name="Password" ColumnName="Password" />

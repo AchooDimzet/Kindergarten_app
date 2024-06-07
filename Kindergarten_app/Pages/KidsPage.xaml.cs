@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Kindergarten_app.Windows;
 
 namespace Kindergarten_app.Pages
 {
@@ -36,7 +37,9 @@ namespace Kindergarten_app.Pages
 
         private void BtnModify_Click(object sender, RoutedEventArgs e)
         {
-
+            AddKidWindow addKid = new AddKidWindow(DgKids.SelectedItem as Kid);
+            addKid.ShowDialog();
+            UpdateDgSource();
         }
 
         private void Delete_Click(object sender, RoutedEventArgs e)
@@ -69,7 +72,9 @@ namespace Kindergarten_app.Pages
 
         private void BtnAddKid_Click(object sender, RoutedEventArgs e)
         {
-
+            AddKidWindow addKid = new AddKidWindow();
+            addKid.ShowDialog();
+            UpdateDgSource();
         }
     }
 }

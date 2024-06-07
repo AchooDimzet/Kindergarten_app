@@ -23,13 +23,14 @@ namespace Kindergarten_app.Entities
         public string First_name { get; set; }
         public string Last_name { get; set; }
         public string Patronimyc { get; set; }
-        public string DateOfBirth { get; set; }
+        public System.DateTime DateOfBirth { get; set; }
         public int ParentId { get; set; }
         public int GroupId { get; set; }
         public string MedicalDescription { get; set; }
         public string Description { get; set; }
         public bool IsValid { get; set; }
         public int Gender { get; set; }
+        public byte[] Photo { get; set; }
     
         public virtual Genders Genders { get; set; }
         public virtual KidGroups KidGroups { get; set; }

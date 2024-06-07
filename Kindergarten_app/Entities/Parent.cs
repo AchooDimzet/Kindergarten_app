@@ -25,10 +25,11 @@ namespace Kindergarten_app.Entities
         public string Patronimyc { get; set; }
         public string Phone { get; set; }
         public string Adress { get; set; }
-        public string DateOfBirth { get; set; }
+        public System.DateTime DateOfBirth { get; set; }
         public string PassportNumber { get; set; }
         public bool IsValid { get; set; }
         public int Gender { get; set; }
+        public byte[] Photo { get; set; }
     
         public virtual Genders Genders { get; set; }
         public virtual ICollection<Kid> Kid { get; set; }

@@ -64,6 +64,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Windows\AddKidWindow.xaml.cs">
+      <DependentUpon>AddKidWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\AddParentWindow.xaml.cs">
+      <DependentUpon>AddParentWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\AddPrivateLessonWindow.xaml.cs">
+      <DependentUpon>AddPrivateLessonWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\AddWorkerWindow.xaml.cs">
+      <DependentUpon>AddWorkerWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -136,7 +148,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\PrivateLessonsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\WorkersPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\AddKidWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\AddParentWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\AddPrivateLessonWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\AddWorkerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -153,6 +185,9 @@
     </Compile>
     <Compile Include="Pages\ParentsPage.xaml.cs">
       <DependentUpon>ParentsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PrivateLessonsPage.xaml.cs">
+      <DependentUpon>PrivateLessonsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\WorkersPage.xaml.cs">
       <DependentUpon>WorkersPage.xaml</DependentUpon>
@@ -190,9 +225,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Windows\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Entities\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
