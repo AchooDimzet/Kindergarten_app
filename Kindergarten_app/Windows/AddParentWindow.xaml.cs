@@ -32,7 +32,9 @@ namespace Kindergarten_app.Windows
         }
         public AddParentWindow(Parent parent)
         {
+
             InitializeComponent();
+            CbGender.ItemsSource = AppData.Context.Genders.ToList();
             currentParent = parent;
 
             TbFirstName.Text = parent.First_name;
@@ -51,40 +53,48 @@ namespace Kindergarten_app.Windows
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
-            if (currentParent == null)
+            try
             {
-                AppData.Context.Parent.Add(new Parent()
+                if (currentParent == null)
                 {
-                    First_name = TbFirstName.Text,
-                    Last_name = TbLastName.Text,
-                    Patronimyc = TbPatronymic.Text,
-                    Phone = TbPhone.Text,
-                    Adress = TbAdress.Text,
-                    DateOfBirth = DateBirth.SelectedDate.Value,
-                    PassportNumber = TbPassport.Text,
-                    Gender = CbGender.SelectedIndex + 1,
+                    AppData.Context.Parent.Add(new Parent()
+                    {
+                        First_name = TbFirstName.Text,
+                        Last_name = TbLastName.Text,
+                        Patronimyc = TbPatronymic.Text,
+                        Phone = TbPhone.Text,
+                        Adress = TbAdress.Text,
+                        DateOfBirth = DateBirth.SelectedDate.Value,
+                        PassportNumber = TbPassport.Text,
+                        Gender = CbGender.SelectedIndex + 1,
 
-                    Photo = _image,
-                    IsValid = true
-                });
-                AppData.Context.SaveChanges();
-                this.Close();
+                        Photo = _image,
+                        IsValid = true
+                    });
+                    AppData.Context.SaveChanges();
+                    this.Close();
+                }
+                else
+                {
+                    currentParent.First_name = TbFirstName.Text;
+                    currentParent.Last_name = TbLastName.Text;
+                    currentParent.Patronimyc = TbPatronymic.Text;
+                    currentParent.Phone = TbPhone.Text;
+                    currentParent.Adress = TbAdress.Text;
+                    currentParent.DateOfBirth = DateBirth.SelectedDate.Value;
+                    currentParent.PassportNumber = TbPassport.Text;
+                    currentParent.Gender = CbGender.SelectedIndex + 1;
+
+                    currentParent.Photo = _image;
+                    currentParent.IsValid = true;
+                    AppData.Context.SaveChanges();
+                    this.Close();
+                }
             }
-            else
+            
+            catch(Exception ex)
             {
-                currentParent.First_name = TbFirstName.Text;
-                currentParent.Last_name = TbLastName.Text;
-                currentParent.Patronimyc = TbPatronymic.Text;
-                currentParent.Phone = TbPhone.Text;
-                currentParent.Adress = TbAdress.Text;
-                currentParent.DateOfBirth = DateBirth.SelectedDate.Value;
-                currentParent.PassportNumber = TbPassport.Text;
-                currentParent.Gender = CbGender.SelectedIndex + 1;
-
-                currentParent.Photo = _image;
-                currentParent.IsValid = true;
-                AppData.Context.SaveChanges();
-                this.Close();
+                MessageBox.Show(ex.Message, "Проверьте правильность введенных данных", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

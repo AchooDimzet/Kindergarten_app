@@ -12,7 +12,7 @@ namespace Kindergarten_app.Entities
         {
             get
             {
-                { return Last_name + "" + First_name + "" + Patronimyc; }
+                { return Last_name + " " + First_name + " " + Patronimyc; }
             }
         }
     }
@@ -22,17 +22,17 @@ namespace Kindergarten_app.Entities
         {
             get
             {
-                { return Last_name + "" + First_name + "" + Patronimyc; }
+                { return Last_name + " " + First_name + " " + Patronimyc; }
             }
         }
     }
-    public partial class Parent
+    public partial class Kid
     {
-        public string Kids
+        public string FullName
         {
             get
             {
-                { return Last_name + "" + First_name + "" + Patronimyc; }
+                { return Last_name + " " + First_name + " " + Patronimyc; }
             }
         }
     }

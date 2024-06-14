@@ -38,6 +38,9 @@ namespace Kindergarten_app.Windows
         public AddKidWindow(Kid kid)
         {
             InitializeComponent();
+            CbParent.ItemsSource = AppData.Context.Parent.ToList();
+            CbGroup.ItemsSource = AppData.Context.KidGroups.ToList();
+            CbGender.ItemsSource = AppData.Context.Genders.ToList();
 
             TbFirstName.Text = kid.First_name;
             TbLastName.Text = kid.Last_name;
@@ -56,42 +59,50 @@ namespace Kindergarten_app.Windows
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
-            if (currentKid == null)
+            try
             {
-                AppData.Context.Kid.Add(new Kid()
+                if (currentKid == null)
                 {
-                    First_name = TbFirstName.Text,
-                    Last_name = TbLastName.Text,
-                    Patronimyc = TbPatronymic.Text,
-                    DateOfBirth = DateBirth.SelectedDate.Value,
-                    ParentId = CbParent.SelectedIndex + 1,
-                    GroupId = CbGroup.SelectedIndex + 1,
-                    MedicalDescription = TbMedical.Text,
-                    Description = TbDescription.Text,
-                    Gender = CbGender.SelectedIndex + 1,
+                    AppData.Context.Kid.Add(new Kid()
+                    {
+                        First_name = TbFirstName.Text,
+                        Last_name = TbLastName.Text,
+                        Patronimyc = TbPatronymic.Text,
+                        DateOfBirth = DateBirth.SelectedDate.Value,
+                        ParentId = CbParent.SelectedIndex + 1,
+                        GroupId = CbGroup.SelectedIndex + 1,
+                        MedicalDescription = TbMedical.Text,
+                        Description = TbDescription.Text,
+                        Gender = CbGender.SelectedIndex + 1,
 
-                    Photo = _image,
-                    IsValid = true
-                });
-                AppData.Context.SaveChanges();
-                this.Close();
+                        Photo = _image,
+                        IsValid = true
+                    });
+                    AppData.Context.SaveChanges();
+                    this.Close();
+                }
+                else
+                {
+                    currentKid.First_name = TbFirstName.Text;
+                    currentKid.Last_name = TbLastName.Text;
+                    currentKid.Patronimyc = TbPatronymic.Text;
+                    currentKid.DateOfBirth = DateBirth.SelectedDate.Value;
+                    currentKid.ParentId = CbParent.SelectedIndex + 1;
+                    currentKid.GroupId = CbGroup.SelectedIndex + 1;
+                    currentKid.MedicalDescription = TbMedical.Text;
+                    currentKid.Description = TbDescription.Text;
+                    currentKid.Gender = CbGender.SelectedIndex + 1;
+
+                    currentKid.Photo = _image;
+                    currentKid.IsValid = true;
+                    AppData.Context.SaveChanges();
+                    this.Close();
+                }
             }
-            else
+            
+            catch(Exception ex)
             {
-                currentKid.First_name = TbFirstName.Text;
-                currentKid.Last_name = TbLastName.Text;
-                currentKid.Patronimyc = TbPatronymic.Text;
-                currentKid.DateOfBirth = DateBirth.SelectedDate.Value;
-                currentKid.ParentId = CbParent.SelectedIndex + 1;
-                currentKid.GroupId = CbGroup.SelectedIndex + 1;
-                currentKid.MedicalDescription = TbMedical.Text;
-                currentKid.Description = TbDescription.Text;
-                currentKid.Gender = CbGender.SelectedIndex + 1;
-
-                currentKid.Photo = _image;
-                currentKid.IsValid = true;
-                AppData.Context.SaveChanges();
-                this.Close();
+                MessageBox.Show(ex.Message, "Проверьте правильность введенных данных", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Kindergarten_app.Windows"
         mc:Ignorable="d"
-        Title="AddParentWindow" Height="400" Width="800">
+        Title="AddParentWindow" Height="400" Width="800" MinHeight="400" MinWidth="800">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -41,10 +41,6 @@
             <DockPanel DockPanel.Dock="Top" Margin="10 5">
                 <TextBlock Text="Серия и номер паспорта:" FontSize="16" FontWeight="Bold"/>
                 <TextBox Name="TbPassport" FontSize="16"/>
-            </DockPanel>
-            <DockPanel DockPanel.Dock="Top" Margin="10 5">
-                <TextBlock Text="Должность: " FontSize="16" FontWeight="Bold"/>
-                <ComboBox Name="CbRole" FontSize="16" DisplayMemberPath="Name"/>
             </DockPanel>
             <DockPanel DockPanel.Dock="Top" Margin="10 5">
                 <TextBlock Text="Пол: " FontSize="16" FontWeight="Bold"/>

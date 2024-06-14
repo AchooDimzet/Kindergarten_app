@@ -37,7 +37,7 @@ namespace Kindergarten_app.Pages
 
         private void BtnDelete_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("Вы дейстивтельно хотите удалить этот элемент?", "Удаление", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            if (MessageBox.Show("Вы действительно хотите удалить этот элемент?", "Удаление", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 try
                 {

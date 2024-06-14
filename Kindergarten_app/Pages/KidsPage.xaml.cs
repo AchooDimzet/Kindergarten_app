@@ -1,5 +1,6 @@
 ﻿using Kindergarten_app.Entities;
 using Kindergarten_app.Classes;
+using Kindergarten_app.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Kindergarten_app.Windows;
 
 namespace Kindergarten_app.Pages
 {

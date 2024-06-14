@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Kindergarten_app.Windows"
         mc:Ignorable="d"
-        Title="AddWorkerWindow" Height="500" Width="800">
+        Title="AddWorkerWindow" Height="500" Width="800" MinHeight="500" MinWidth="800">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>

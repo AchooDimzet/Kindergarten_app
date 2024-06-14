@@ -18,7 +18,7 @@
                 <DataGrid Name="DgPrivateLessons" Margin="10" AutoGenerateColumns="False" CanUserAddRows="False">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Работник" Binding="{Binding Workers.FullName}"/>
-                        <DataGridTextColumn Header="Дата" Binding="{Binding DateOfCreate}"/>
+                        <DataGridTextColumn Header="Дата" Binding="{Binding Date, StringFormat=d}"/>
                         <DataGridTextColumn Header="ФИО ребенка" Binding="{Binding Kid.FullName}"/>
                         <DataGridTextColumn Header="Сумма" Binding="{Binding Price}"/>
                         <DataGridTemplateColumn>

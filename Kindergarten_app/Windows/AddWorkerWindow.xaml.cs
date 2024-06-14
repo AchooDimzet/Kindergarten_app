@@ -57,46 +57,54 @@ namespace Kindergarten_app.Windows
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
-            if (currentWorker == null)
+            try
             {
-                AppData.Context.Workers.Add(new Workers()
+                if (currentWorker == null)
                 {
-                    First_name = TbFirstName.Text,
-                    Last_name = TbLastName.Text,
-                    Patronimyc = TbPatronymic.Text,
-                    Phone = TbPhone.Text,
-                    Adress = TbAdress.Text,
-                    DateOfBirth = DateBirth.SelectedDate.Value,
-                    PassportNumber = TbPassport.Text,
-                    RoleId = CbRole.SelectedIndex + 1,
-                    Login = TbLogin.Text,
-                    Password = TbPassword.Password,
-                    Gender = CbGender.SelectedIndex + 1,
-                    
-                    Photo = _image,
-                    IsValid = true
-                });
-                AppData.Context.SaveChanges();
-                this.Close();
-            }
-            else
-            {
-                currentWorker.First_name = TbFirstName.Text;
-                currentWorker.Last_name = TbLastName.Text;
-                currentWorker.Patronimyc = TbPatronymic.Text;
-                currentWorker.Phone = TbPhone.Text;
-                currentWorker.Adress = TbAdress.Text;
-                currentWorker.DateOfBirth = DateBirth.SelectedDate.Value;
-                currentWorker.PassportNumber = TbPassport.Text;
-                currentWorker.RoleId = CbRole.SelectedIndex + 1;
-                currentWorker.Login = TbLogin.Text;
-                currentWorker.Password = TbPassword.Password;
-                currentWorker.Gender = CbGender.SelectedIndex + 1;
+                    AppData.Context.Workers.Add(new Workers()
+                    {
+                        First_name = TbFirstName.Text,
+                        Last_name = TbLastName.Text,
+                        Patronimyc = TbPatronymic.Text,
+                        Phone = TbPhone.Text,
+                        Adress = TbAdress.Text,
+                        DateOfBirth = DateBirth.SelectedDate.Value,
+                        PassportNumber = TbPassport.Text,
+                        RoleId = CbRole.SelectedIndex + 1,
+                        Login = TbLogin.Text,
+                        Password = TbPassword.Password,
+                        Gender = CbGender.SelectedIndex + 1,
 
-                currentWorker.Photo = _image;
-                currentWorker.IsValid = true;
-                AppData.Context.SaveChanges();
-                this.Close();
+                        Photo = _image,
+                        IsValid = true
+                    });
+                    AppData.Context.SaveChanges();
+                    this.Close();
+                }
+                else
+                {
+                    currentWorker.First_name = TbFirstName.Text;
+                    currentWorker.Last_name = TbLastName.Text;
+                    currentWorker.Patronimyc = TbPatronymic.Text;
+                    currentWorker.Phone = TbPhone.Text;
+                    currentWorker.Adress = TbAdress.Text;
+                    currentWorker.DateOfBirth = DateBirth.SelectedDate.Value;
+                    currentWorker.PassportNumber = TbPassport.Text;
+                    currentWorker.RoleId = CbRole.SelectedIndex + 1;
+                    currentWorker.Login = TbLogin.Text;
+                    currentWorker.Password = TbPassword.Password;
+                    currentWorker.Gender = CbGender.SelectedIndex + 1;
+
+                    currentWorker.Photo = _image;
+                    currentWorker.IsValid = true;
+                    AppData.Context.SaveChanges();
+                    this.Close();
+                }
+            }
+            
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Проверьте правильность введенных данных", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

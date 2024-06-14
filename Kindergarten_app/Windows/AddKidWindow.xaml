@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Kindergarten_app.Windows"
         mc:Ignorable="d"
-        Title="AddKidWindow" Height="610" Width="1000">
+        Title="AddKidWindow" Height="610" Width="1000" MinHeight="610" MinWidth="1000">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -28,10 +28,6 @@
             <DockPanel DockPanel.Dock="Top" Margin="10 5">
                 <TextBlock Text="Дата рождения: " FontSize="16" FontWeight="Bold"/>
                 <DatePicker Name="DateBirth" FontSize="16"/>
-            </DockPanel>
-            <DockPanel DockPanel.Dock="Top" Margin="10 5">
-                <TextBlock Text="Телефон: " FontSize="16" FontWeight="Bold"/>
-                <TextBox Name="TbPhone" FontSize="16"/>
             </DockPanel>
             <DockPanel DockPanel.Dock="Top" Margin="10 5">
                 <TextBlock Text="Родитель: " FontSize="16" FontWeight="Bold"/>
