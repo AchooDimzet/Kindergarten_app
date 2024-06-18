@@ -89,6 +89,15 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
+        <EntityType Name="Visits">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="KidId" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IsValid" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="Workers">
           <Key>
             <PropertyRef Name="Id" />
@@ -192,6 +201,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Visits_Kid">
+          <End Role="Kid" Type="Self.Kid" Multiplicity="1" />
+          <End Role="Visits" Type="Self.Visits" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kid">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Visits">
+              <PropertyRef Name="KidId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Workers_Genders">
           <End Role="Genders" Type="Self.Genders" Multiplicity="1" />
           <End Role="Workers" Type="Self.Workers" Multiplicity="*" />
@@ -225,6 +246,7 @@
           <EntitySet Name="PrivateLessons" EntityType="Self.PrivateLessons" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Visits" EntityType="Self.Visits" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Workers" EntityType="Self.Workers" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Kid_Genders" Association="Self.FK_Kid_Genders">
             <End Role="Genders" EntitySet="Genders" />
@@ -254,6 +276,10 @@
             <End Role="Workers" EntitySet="Workers" />
             <End Role="PrivateLessons" EntitySet="PrivateLessons" />
           </AssociationSet>
+          <AssociationSet Name="FK_Visits_Kid" Association="Self.FK_Visits_Kid">
+            <End Role="Kid" EntitySet="Kid" />
+            <End Role="Visits" EntitySet="Visits" />
+          </AssociationSet>
           <AssociationSet Name="FK_Workers_Genders" Association="Self.FK_Workers_Genders">
             <End Role="Genders" EntitySet="Genders" />
             <End Role="Workers" EntitySet="Workers" />
@@ -276,6 +302,7 @@
           <EntitySet Name="PrivateLessons" EntityType="Kindergarten_dbModel.PrivateLessons" />
           <EntitySet Name="Roles" EntityType="Kindergarten_dbModel.Roles" />
           <EntitySet Name="sysdiagrams" EntityType="Kindergarten_dbModel.sysdiagrams" />
+          <EntitySet Name="Visits" EntityType="Kindergarten_dbModel.Visits" />
           <EntitySet Name="Workers" EntityType="Kindergarten_dbModel.Workers" />
           <AssociationSet Name="FK_PrivateLessons_EducationTypes" Association="Kindergarten_dbModel.FK_PrivateLessons_EducationTypes">
             <End Role="EducationTypes" EntitySet="EducationTypes" />
@@ -304,6 +331,10 @@
           <AssociationSet Name="FK_PrivateLessons_Kid" Association="Kindergarten_dbModel.FK_PrivateLessons_Kid">
             <End Role="Kid" EntitySet="Kid" />
             <End Role="PrivateLessons" EntitySet="PrivateLessons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Visits_Kid" Association="Kindergarten_dbModel.FK_Visits_Kid">
+            <End Role="Kid" EntitySet="Kid" />
+            <End Role="Visits" EntitySet="Visits" />
           </AssociationSet>
           <AssociationSet Name="FK_PrivateLessons_Workers" Association="Kindergarten_dbModel.FK_PrivateLessons_Workers">
             <End Role="Workers" EntitySet="Workers" />
@@ -352,6 +383,7 @@
           <NavigationProperty Name="KidGroups" Relationship="Kindergarten_dbModel.FK_Kid_KidGroups" FromRole="Kid" ToRole="KidGroups" />
           <NavigationProperty Name="Parent" Relationship="Kindergarten_dbModel.FK_Kid_Parent" FromRole="Kid" ToRole="Parent" />
           <NavigationProperty Name="PrivateLessons" Relationship="Kindergarten_dbModel.FK_PrivateLessons_Kid" FromRole="Kid" ToRole="PrivateLessons" />
+          <NavigationProperty Name="Visits" Relationship="Kindergarten_dbModel.FK_Visits_Kid" FromRole="Kid" ToRole="Visits" />
         </EntityType>
         <EntityType Name="KidGroups">
           <Key>
@@ -412,6 +444,16 @@
           <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Visits">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="KidId" Type="Int32" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Kid" Relationship="Kindergarten_dbModel.FK_Visits_Kid" FromRole="Visits" ToRole="Kid" />
+          <Property Name="IsValid" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Workers">
           <Key>
@@ -515,6 +557,18 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="PrivateLessons">
+              <PropertyRef Name="KidId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Visits_Kid">
+          <End Type="Kindergarten_dbModel.Kid" Role="Kid" Multiplicity="1" />
+          <End Type="Kindergarten_dbModel.Visits" Role="Visits" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kid">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Visits">
               <PropertyRef Name="KidId" />
             </Dependent>
           </ReferentialConstraint>
@@ -638,6 +692,16 @@
                 <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
                 <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Visits">
+            <EntityTypeMapping TypeName="Kindergarten_dbModel.Visits">
+              <MappingFragment StoreEntitySet="Visits">
+                <ScalarProperty Name="IsValid" ColumnName="IsValid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="KidId" ColumnName="KidId" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

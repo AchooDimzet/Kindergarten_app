@@ -38,6 +38,9 @@ namespace Kindergarten_app.Windows
             InitializeComponent();
             currentWorker = workers;
 
+            CbRole.ItemsSource = AppData.Context.Roles.ToList();
+            CbGender.ItemsSource = AppData.Context.Genders.ToList();
+
             TbFirstName.Text = workers.First_name;
             TbLastName.Text = workers.Last_name;
             TbPatronymic.Text = workers.Patronimyc;

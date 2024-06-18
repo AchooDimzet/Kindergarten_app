@@ -64,6 +64,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Entities\Visits.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\VisitsPage.xaml.cs">
+      <DependentUpon>VisitsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\AddKidWindow.xaml.cs">
       <DependentUpon>AddKidWindow.xaml</DependentUpon>
     </Compile>
@@ -72,6 +78,9 @@
     </Compile>
     <Compile Include="Windows\AddPrivateLessonWindow.xaml.cs">
       <DependentUpon>AddPrivateLessonWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\AddVisitWindow.xaml.cs">
+      <DependentUpon>AddVisitWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\AddWorkerWindow.xaml.cs">
       <DependentUpon>AddWorkerWindow.xaml</DependentUpon>
@@ -152,6 +161,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\VisitsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\WorkersPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -165,6 +178,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\AddPrivateLessonWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\AddVisitWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

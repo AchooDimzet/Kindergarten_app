@@ -23,6 +23,7 @@
                     <Button FontSize="20" Margin="5" Padding="10 0" Content="Работники" Click="Button_Click"/>
                     <Button FontSize="20" Margin="5" Padding="10 0" Content="Родители" Name="BtnParents" Click="BtnParents_Click"/>
                     <Button FontSize="20" Margin="5" Padding="10 0" Content="Дети" Name="BtnKids" Click="BtnKids_Click"/>
+                    <Button FontSize="20" Margin="5" Padding="10 0" Content="Посещаемость" Name="BtnVisits" Click="BtnVisits_Click"/>
                 </StackPanel>
             </Border>
         </StackPanel>

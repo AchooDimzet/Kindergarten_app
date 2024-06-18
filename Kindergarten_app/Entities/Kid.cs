@@ -17,6 +17,7 @@ namespace Kindergarten_app.Entities
         public Kid()
         {
             this.PrivateLessons = new HashSet<PrivateLessons>();
+            this.Visits = new HashSet<Visits>();
         }
     
         public int Id { get; set; }
@@ -36,5 +37,6 @@ namespace Kindergarten_app.Entities
         public virtual KidGroups KidGroups { get; set; }
         public virtual Parent Parent { get; set; }
         public virtual ICollection<PrivateLessons> PrivateLessons { get; set; }
+        public virtual ICollection<Visits> Visits { get; set; }
     }
 }

@@ -45,5 +45,10 @@ namespace Kindergarten_app.Pages
         {
             AppData.MainFrame.Navigate(new KidsPage());
         }
+
+        private void BtnVisits_Click(object sender, RoutedEventArgs e)
+        {
+            AppData.MainFrame.Navigate(new VisitsPage());
+        }
     }
 }

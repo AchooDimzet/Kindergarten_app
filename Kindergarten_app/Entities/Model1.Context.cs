@@ -33,6 +33,7 @@ namespace Kindergarten_app.Entities
         public DbSet<PrivateLessons> PrivateLessons { get; set; }
         public DbSet<Roles> Roles { get; set; }
         public DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public DbSet<Visits> Visits { get; set; }
         public DbSet<Workers> Workers { get; set; }
     }
 }
